@@ -1,6 +1,9 @@
 # Prerequisites
 *.d
 
+#.pyc objects
+*.pyc
+
 # Object files
 *.o
 *.ko
@@ -50,3 +53,6 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+#VSCode workspace
+.vscode/
