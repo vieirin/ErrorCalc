@@ -39,6 +39,11 @@ class NumbersGrid(Gtk.Grid):
             button.connect('clicked', self.on_number_clicked, self.display)
 
     def on_number_clicked(self, widget, display):
-        curr_text = display.get_text()
-        curr_text+=widget.get_label()
-        display.set_text(curr_text)
+        old_txt = display.get_text()
+        to_add = widget.get_label()
+        new_txt = old_txt + to_add
+        if new_txt == '.' or new_txt == '±':
+            new_txt = new_txt[:-1]
+        if new_txt.count(to_add) > 1:
+            new_txt = new_txt[:-1]
+        display.set_text(new_txt)
