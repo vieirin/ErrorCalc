@@ -11,5 +11,7 @@ class Display(Gtk.Entry):
         self.set_editable(False)
 
     def on_key_release(self, widget, event):
-        if event.keyval == 32:
-            widget.set_text('foi')
+        if event.keyval in range(48, 58):
+            curr_txt = widget.get_text()
+            curr_txt += chr(event.keyval)
+            widget.set_text(curr_txt)

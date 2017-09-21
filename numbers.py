@@ -23,6 +23,7 @@ class NumbersGrid(Gtk.Grid):
         zero_button = Gtk.Button(label='0')
         comma_button = Gtk.Button(label='.')
         plus_minus_button = Gtk.Button(label='±')
+        
         self.numbers.append(zero_button)
 
         self.attach(zero_button, 0, 3, 1, 1)
