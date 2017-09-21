@@ -23,6 +23,19 @@ class NumbersGrid(Gtk.Grid):
         zero_button = Gtk.Button(label='0')
         comma_button = Gtk.Button(label='.')
         plus_minus_button = Gtk.Button(label='±')
+        self.numbers.append(zero_button)
+
         self.attach(zero_button, 0, 3, 1, 1)
         self.attach(comma_button, 1, 3, 1, 1)
         self.attach(plus_minus_button, 2, 3, 1, 1)
+
+    def connect_to_display(self, display):
+        #connect all grid buttons to main display
+        self.display = display
+        for button in self.numbers:
+            button.connect('clicked', self.on_button_clicked, self.display)
+
+    def on_button_clicked(self, widget, display):
+        curr_text = display.get_text()
+        curr_text+=widget.get_label()
+        display.set_text(curr_text)
