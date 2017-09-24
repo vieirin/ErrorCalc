@@ -44,6 +44,6 @@ class NumbersGrid(Gtk.Grid):
         new_txt = old_txt + to_add
         if new_txt == '.' or new_txt == '±':
             new_txt = new_txt[:-1]
-        if new_txt.count(to_add) > 1:
+        if (to_add == '.' or to_add == '±') and new_txt.count(to_add) > 1:
             new_txt = new_txt[:-1]
         display.set_text(new_txt)

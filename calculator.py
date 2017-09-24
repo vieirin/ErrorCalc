@@ -26,6 +26,10 @@ class MainWindow(Gtk.Window):
 
         #connect numbers buttons to display
         self.numbers_grid.connect_to_display(self.display)
+        self.connect('key-release-event', self.on_key_release)
+
+    def on_key_release(self, widget, event):
+        self.display.on_key_release(self.display, event)
 
 win = MainWindow()
 win.connect('delete-event', Gtk.main_quit)
