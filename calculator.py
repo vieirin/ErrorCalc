@@ -5,7 +5,8 @@ gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk
 from numbers import NumbersGrid
 from display import Display
-
+from operators import OperatorsGrid
+from actions import Actions
 
 class MainWindow(Gtk.Window):
     def __init__(self):
@@ -13,16 +14,24 @@ class MainWindow(Gtk.Window):
         self.set_resizable(False)
         
         #creates box which handles all childs
-        self.box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6)
+        self.box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         self.add(self.box)
+        self.buttons_box = Gtk.Box()
+        self.operators_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         
         #objects to be added to main box
         self.numbers_grid = NumbersGrid()
         self.display = Display()
+        self.operators_grid = OperatorsGrid(self.display)
+        self.actions = Actions(self.display, self.operators_grid)
         
         #add objects to box
-        self.box.pack_start(self.display, True, True, 0)
-        self.box.pack_start(self.numbers_grid, True, True, 0)
+        self.box.add(self.display)
+        self.box.add(self.buttons_box)
+        self.buttons_box.pack_start(self.numbers_grid, False, True, 0)
+        self.buttons_box.pack_start(self.operators_box, False, True, 0)
+        self.operators_box.pack_start(self.actions, False, True, 0)
+        self.operators_box.add(self.operators_grid)
 
         #connect numbers buttons to display
         self.numbers_grid.connect_to_display(self.display)
