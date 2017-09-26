@@ -3,12 +3,13 @@ import gi
 gi.require_version('Gtk', '3.0')
 
 from gi.repository import Gtk
+from system import CalculatorSystem
 
 class Actions(Gtk.Box):
-    def __init__(self, display, op_grid):
+    def __init__(self, display, calc_system):
         Gtk.Box.__init__(self)
         self.display = display
-        self.op_grid = op_grid
+        self.calc_system = calc_system
         self.buttons_grid = Gtk.Grid()
         self.buttons_label = ['←', 'CA', 'Enter']
         self.buttons = []
@@ -34,7 +35,7 @@ class Actions(Gtk.Box):
         self.display.set_text(self.display.get_text()[:-1])
     
     def ca_clicked(self, widget):
-        self.op_grid.reset_op()
+       self.calc_system.reset()
 
     def enter_clicked(self, widget):
-        pass
+        self.calc_system.operate()

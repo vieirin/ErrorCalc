@@ -32,5 +32,6 @@ class Display(Gtk.Entry):
             curr_txt = widget.get_text()
             curr_txt = curr_txt[:-1]
             widget.set_text(curr_txt)
+    
     def clear(self):
         self.set_text('')

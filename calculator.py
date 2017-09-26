@@ -7,12 +7,13 @@ from numbers import NumbersGrid
 from display import Display
 from operators import OperatorsGrid
 from actions import Actions
+from system import CalculatorSystem
 
 class MainWindow(Gtk.Window):
     def __init__(self):
         Gtk.Window.__init__(self, title='Calculator')
         self.set_resizable(False)
-        
+
         #creates box which handles all childs
         self.box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         self.add(self.box)
@@ -22,8 +23,9 @@ class MainWindow(Gtk.Window):
         #objects to be added to main box
         self.numbers_grid = NumbersGrid()
         self.display = Display()
-        self.operators_grid = OperatorsGrid(self.display)
-        self.actions = Actions(self.display, self.operators_grid)
+        self.calc_system = CalculatorSystem(self.display)
+        self.operators_grid = OperatorsGrid(self.display, self.calc_system)
+        self.actions = Actions(self.display, self.calc_system)
         
         #add objects to box
         self.box.add(self.display)
