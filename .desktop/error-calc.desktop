@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=errorcalc
+Name=Error Calculator
+Icon=/usr/local/etc/catron.png
+Categories=Math;Science
+StartupNotify=true
